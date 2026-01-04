@@ -30,7 +30,7 @@ partial class MainForm
     {
         this.components = new System.ComponentModel.Container();
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(1200, 800);
+        this.ClientSize = new System.Drawing.Size(1000, 800);
         this.Text = "Log Manager";
         this.Padding = new Padding(10);
         
@@ -59,7 +59,7 @@ partial class MainForm
         configLayout.RowCount = 1;
         configLayout.ColumnCount = 3; // Source | Spacer | Filters
         configLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
-        configLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F)); // Spacer
+        configLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F)); 
         configLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
         topGroup.Controls.Add(configLayout);
 
@@ -85,8 +85,8 @@ partial class MainForm
         btnBrowseSource = new Button { Text = "Browse", Dock = DockStyle.Right, AutoSize = true };
         sourceLayout.Controls.Add(btnBrowseSource, 1, 3);
         
-        btnSettings = new Button { Text = "⚙ Settings", Dock = DockStyle.Left, AutoSize = true, BackColor = Color.WhiteSmoke };
-        sourceLayout.Controls.Add(btnSettings, 1, 4);
+        btnSettings = new Button { Text = "⚙ Settings", Dock = DockStyle.Left, AutoSize = false, BackColor = Color.WhiteSmoke, Width = 60};
+        sourceLayout.Controls.Add(btnSettings, 0, 4);
 
         sourcePanel.Controls.Add(sourceLayout);
         configLayout.Controls.Add(sourcePanel, 0, 0);
@@ -95,9 +95,9 @@ partial class MainForm
         var filterPanel = new Panel { Dock = DockStyle.Fill, AutoSize = true };
         var filterLayout = new TableLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, RowCount = 5, ColumnCount = 4 };
         // Cols: Label | Control | Label | Control
-        filterLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        filterLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
         filterLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
-        filterLayout.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+        filterLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
         filterLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
 
         // Row 0: Date
@@ -114,8 +114,8 @@ partial class MainForm
         txtMacFilePath = new TextBox { Dock = DockStyle.Fill, PlaceholderText = "Path to MACs file..." };
         filterLayout.Controls.Add(txtMacFilePath, 1, 1);
         
-        btnBrowseMac = new Button { Text = " Browse ", Dock = DockStyle.Fill, AutoSize = true, Width = 60 };
-        filterLayout.Controls.Add(btnBrowseMac, 2, 1); // Layout fix: cleaner button
+        btnBrowseMac = new Button { Text = " Browse ", Dock = DockStyle.Fill, AutoSize = true};
+        filterLayout.Controls.Add(btnBrowseMac, 2, 1); 
         filterLayout.SetColumnSpan(txtMacFilePath, 1);
 
         // Row 2: Options
@@ -123,8 +123,8 @@ partial class MainForm
         filterLayout.Controls.Add(chkOnlyNewest, 1, 2);
 
         var statusPanel = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoSize = true, FlowDirection = FlowDirection.LeftToRight, Padding = new Padding(0) };
-        chkPass = new CheckBox { Text = "PASS", Checked = true, AutoSize = true };
-        chkFail = new CheckBox { Text = "FAIL", Checked = true, AutoSize = true };
+        chkPass = new RadioButton { Text = "PASS", Checked = true, AutoSize = true };
+        chkFail = new RadioButton { Text = "FAIL", Checked = false, AutoSize = true };
         statusPanel.Controls.Add(chkPass);
         statusPanel.Controls.Add(chkFail);
         filterLayout.Controls.Add(statusPanel, 3, 2);
@@ -180,8 +180,8 @@ partial class MainForm
     public DateTimePicker dtpTo;
     public TextBox txtMacFilePath;
     public Button btnBrowseMac;
-    public CheckBox chkPass;
-    public CheckBox chkFail;
+    public RadioButton chkPass;
+    public RadioButton chkFail;
     public Button btnLoad;
     public Button btnExport;
     public DataGridView gridLogs;

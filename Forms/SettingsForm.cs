@@ -1,3 +1,4 @@
+using LogManager.Interfaces;
 using LogManager.Models;
 using LogManager.Services;
 
@@ -17,12 +18,6 @@ public partial class SettingsForm : Form
     private TextBox txtFailPattern;
     private Button btnSave;
     private Button btnCancel;
-
-    // Constructor for Designer support
-    public SettingsForm()
-    {
-        InitializeComponent();
-    }
 
     public SettingsForm(IConfigManager configManager)
     {

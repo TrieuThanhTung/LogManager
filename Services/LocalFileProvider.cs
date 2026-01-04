@@ -40,6 +40,6 @@ public class LocalFileProvider : IFileSourceProvider
 
     public Task<bool> IsConnectedAsync()
     {
-        return Task.FromResult(true); // Local is always connected
+        return Task.FromResult(true);
     }
 }
